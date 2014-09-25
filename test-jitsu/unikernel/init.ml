@@ -35,10 +35,10 @@ let remove xs k =
 
 let write xs kvs =
   let kvs = List.map (fun (k, v) -> xs_key k, v) kvs in
-  let str =
+(*  let str =
     String.concat " " (List.map (fun (k, v) -> sprintf "%s:%s" k v) kvs)
   in
-(*  printf "write %s\n" str; *)
+  printf "write %s\n" str; *)
   OS.Xs.(transaction xs (fun h ->
       Lwt_list.iter_p (fun (k, v) -> write h k v) kvs
     ))
